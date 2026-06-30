@@ -10,6 +10,17 @@ from pydantic import BaseModel
 from typing import List, Optional
 from enum import Enum
 
+
+from pydantic import BaseModel
+from datetime import date
+
+class IncomingKafkaMessage(BaseModel):
+    id: str
+    type: str  # например, "frapclaims"
+    date: date # формат "2024-10-17"
+    uri: str   # имя файла, например "a005e224-f0a5-4092-82c6-002adc0f4d95"
+
+
 class VerificationStatus(str, Enum):
     SUCCESS = "success"
     PARTIAL = "partial"
