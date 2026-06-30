@@ -2,6 +2,27 @@ import logging
 import logging.config
 
 from pydantic import BaseModel
+import logging
+import sys
+
+def setup_logging(level=logging.INFO):
+    """Настраивает логирование для всего приложения."""
+    logging.basicConfig(
+        level=level,
+        format="%(asctime)s - %(name)s - %(levelname)s - %(message)s",
+        handlers=[
+            logging.StreamHandler(sys.stdout)
+        ]
+    )
+    # Устанавливаем уровень для наших модулей
+    logging.getLogger("app.services.processor").setLevel(logging.DEBUG)
+    logging.getLogger("app.services.kafka_client").setLevel(logging.DEBUG)
+    logging.getLogger("app.routers").setLevel(logging.INFO)
+
+    logger = logging.getLogger(__name__)
+    logger.info(f"Logging configured with level: {logging.getLevelName(level)}")
+
+
 
 LOG_FORMAT = "%(asctime)s %(levelname)s [%(name)s] %(message)s"
 LOG_DATE_FORMAT = "%Y-%m-%d %H:%M:%S"
