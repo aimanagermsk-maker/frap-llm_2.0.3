@@ -18,6 +18,25 @@ file_storage:
   file_prefix: "result_"
   cleanup_after_send: false
 
+
+normative_rules:
+  sparkling_wine_import:
+    expected_fields:
+      - xml_field: "Наименование"
+        normative_reference: "ГОСТ 12345-2020 п.4.1"
+        severity: "error"
+      - xml_field: "Производитель"
+        normative_reference: "ГОСТ 12345-2020 п.4.2"
+        severity: "error"
+    mandatory_elements:
+      - element: "Дата розлива"
+        normative_requirement: "Обязательно указывается на этикетке"
+      - element: "Срок годности"
+        normative_requirement: "Обязательно указывается на этикетке"
+      - element: "Состав"
+        normative_requirement: "Обязательно указывается на этикетке"
+
+        
 logging:
   enabled: true
   table_name: "service_logs"
